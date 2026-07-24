@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Brain, Award, BookOpen, Layers, CheckCircle2, Download, Sparkles } from 'lucide-react';
 
@@ -39,34 +38,19 @@ export default function AboutSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         <div className="flex flex-col items-center text-center mb-16">
-          <motion.div
-            initial={{ opacity: 1, y: 0 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.01 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3"
-          >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
             <span>01 // AI ENGINEER BIOGRAPHY & METRICS</span>
-          </motion.div>
+          </div>
 
-          <motion.h2
-            initial={{ opacity: 1, y: 0 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.01 }}
-            className="text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-white"
-          >
+          <h2 className="text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-white">
             ABOUT <span className="text-gradient-cyan">ME</span>
-          </motion.h2>
+          </h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          <motion.div
-            initial={{ opacity: 1, x: 0 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.01 }}
-            className="lg:col-span-5 relative"
-          >
+          <div className="lg:col-span-5 relative">
             <div className="relative rounded-2xl overflow-hidden glass-panel border border-cyan-500/30 p-3 group shadow-[0_0_30px_rgba(0,243,255,0.15)]">
               <div className="relative aspect-[3/4] rounded-xl overflow-hidden">
                 <Image
@@ -91,14 +75,9 @@ export default function AboutSection() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 1, x: 0 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.01 }}
-            className="lg:col-span-7 flex flex-col justify-center"
-          >
+          <div className="lg:col-span-7 flex flex-col justify-center">
             <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 leading-snug">
               Designing <span className="text-cyan-400">Deep Learning Architectures</span> & High-Throughput <span className="text-purple-400">Computer Vision Systems</span>.
             </h3>
@@ -126,11 +105,8 @@ export default function AboutSection() {
               {stats.map((st) => {
                 const IconComp = st.icon;
                 return (
-                  <motion.div
+                  <div
                     key={st.label}
-                    initial={{ opacity: 1, y: 0 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.01 }}
                     className="p-4 rounded-xl glass-panel-glow light-sweep-container flex flex-col justify-between"
                   >
                     <div className="flex items-center justify-between mb-2">
@@ -143,7 +119,7 @@ export default function AboutSection() {
                       <p className="text-xs font-bold text-white mb-0.5">{st.label}</p>
                       <p className="text-[11px] text-slate-400 font-mono">{st.desc}</p>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
@@ -161,7 +137,7 @@ export default function AboutSection() {
               </a>
             </div>
 
-          </motion.div>
+          </div>
 
         </div>
 

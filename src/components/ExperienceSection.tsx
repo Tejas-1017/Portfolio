@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Briefcase, Calendar, MapPin, ChevronRight } from 'lucide-react';
 
 const experiences = [
@@ -47,30 +46,19 @@ export default function ExperienceSection() {
         
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3"
-          >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
             <span>03 // WORK EXPERIENCE</span>
-          </motion.div>
+          </div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-white"
-          >
+          <h2 className="text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-white">
             CAREER <span className="text-gradient-cyan">TIMELINE</span>
-          </motion.h2>
+          </h2>
         </div>
 
         {/* Vertical Timeline Container */}
         <div className="relative">
-          {/* Central Glowing Animated Line */}
+          {/* Central Glowing Line */}
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-cyan-500 via-blue-600 to-purple-600 shadow-[0_0_15px_#00f3ff] -translate-x-1/2" />
 
           <div className="space-y-16">
@@ -78,11 +66,8 @@ export default function ExperienceSection() {
               const isEven = idx % 2 === 0;
 
               return (
-                <motion.div
+                <div
                   key={exp.company}
-                  initial={{ opacity: 1, y: 0 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.01 }}
                   className={`relative flex flex-col md:flex-row items-start ${
                     isEven ? 'md:flex-row-reverse' : ''
                   }`}
@@ -145,7 +130,7 @@ export default function ExperienceSection() {
                     </div>
                   </div>
 
-                </motion.div>
+                </div>
               );
             })}
           </div>

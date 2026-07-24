@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Brain, Eye, Sparkles, Code, Cpu, Layers, Check } from 'lucide-react';
 
 const skillCategories = [
@@ -59,25 +58,14 @@ export default function SkillsSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         <div className="flex flex-col items-center text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3"
-          >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
             <span>02 // AI / ML TECHNICAL MATRIX</span>
-          </motion.div>
+          </div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-white"
-          >
+          <h2 className="text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-white">
             AI ENGINEERING <span className="text-gradient-cyan">SKILLS</span>
-          </motion.h2>
+          </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -86,14 +74,11 @@ export default function SkillsSection() {
             const isHovered = hoveredCard === cat.id;
 
             return (
-              <motion.div
+              <div
                 key={cat.id}
-                initial={{ opacity: 1, y: 0 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.01 }}
                 onMouseEnter={() => setHoveredCard(cat.id)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className={`p-6 rounded-2xl glass-panel light-sweep-container relative transition-all duration-500 cursor-pointer border ${
+                className={`p-6 rounded-2xl glass-panel light-sweep-container relative transition-all duration-300 cursor-pointer border ${
                   isHovered
                     ? 'border-cyan-400 shadow-[0_0_35px_rgba(0,243,255,0.25)] scale-[1.02] -translate-y-2'
                     : 'border-white/10 hover:border-cyan-500/30'
@@ -131,7 +116,7 @@ export default function SkillsSection() {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>

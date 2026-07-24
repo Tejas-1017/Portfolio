@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { Send, Mail, MapPin, Phone, CheckCircle2, Brain, Loader2 } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaFilePdf } from 'react-icons/fa6';
@@ -18,7 +17,6 @@ export default function ContactSection() {
     setIsSubmitting(true);
 
     try {
-      // Background async email transmission to tejaskharkar15@gmail.com
       await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -51,36 +49,19 @@ export default function ContactSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         <div className="flex flex-col items-center text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3"
-          >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
             <span>05 // INITIATE NEURAL TRANSMISSION</span>
-          </motion.div>
+          </div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-white"
-          >
+          <h2 className="text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-white">
             GET IN <span className="text-gradient-cyan">TOUCH</span>
-          </motion.h2>
+          </h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="lg:col-span-5 space-y-6"
-          >
+          <div className="lg:col-span-5 space-y-6">
             <h3 className="text-2xl font-bold text-white mb-4">
               Let's Build Cutting-Edge <span className="text-cyan-400">AI / ML Software</span> & <span className="text-purple-400">Vision Systems</span>.
             </h3>
@@ -156,15 +137,9 @@ export default function ContactSection() {
               </div>
             </div>
 
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="lg:col-span-7"
-          >
+          <div className="lg:col-span-7">
             <div className="p-8 rounded-2xl glass-panel-glow light-sweep-container relative border border-cyan-500/30">
               
               <h3 className="text-xl font-mono font-bold text-white mb-6 flex items-center gap-2">
@@ -263,7 +238,7 @@ export default function ContactSection() {
               )}
 
             </div>
-          </motion.div>
+          </div>
 
         </div>
 

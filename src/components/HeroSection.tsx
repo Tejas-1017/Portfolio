@@ -1,28 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
 import Image from 'next/image';
 import { ArrowUpRight, Download, Terminal, Brain, Sparkles } from 'lucide-react';
 import AITerminal from './AITerminal';
 
 export default function HeroSection() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const { innerWidth, innerHeight } = window;
-      const x = (e.clientX - innerWidth / 2) / (innerWidth / 2);
-      const y = (e.clientY - innerHeight / 2) / (innerHeight / 2);
-      setMousePos({ x, y });
-    };
-
-    if (typeof window !== 'undefined' && window.innerWidth >= 768) {
-      window.addEventListener('mousemove', handleMouseMove);
-      return () => window.removeEventListener('mousemove', handleMouseMove);
-    }
-  }, []);
 
   return (
     <section
@@ -42,44 +26,28 @@ export default function HeroSection() {
         <div className="lg:col-span-7 flex flex-col justify-center text-left">
           
           {/* Telemetry Chip */}
-          <motion.div
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-6 w-max shadow-[0_0_15px_rgba(0,243,255,0.15)]"
-          >
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-6 w-max shadow-[0_0_15px_rgba(0,243,255,0.15)]">
             <Brain className="w-4 h-4 text-cyan-400 animate-pulse" />
             <span>AI & MACHINE LEARNING ENGINEER</span>
             <span className="text-white/30">|</span>
             <span className="text-purple-400 font-bold">DEEP LEARNING & CV</span>
-          </motion.div>
+          </div>
 
           {/* Massive Bold Typography */}
-          <motion.h1
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl sm:text-7xl lg:text-8xl font-extrabold uppercase text-white tracking-tight leading-[0.95] mb-6"
-          >
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold uppercase text-white tracking-tight leading-[0.95] mb-6">
             TEJAS <br />
             <span className="text-gradient-cyan drop-shadow-[0_0_35px_rgba(0,243,255,0.4)]">
               KHARKAR
             </span>
-          </motion.h1>
+          </h1>
 
           {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-slate-300 text-base sm:text-lg max-w-xl font-light leading-relaxed mb-8"
-          >
+          <p className="text-slate-300 text-base sm:text-lg max-w-xl font-light leading-relaxed mb-8">
             Architecting high-performance <span className="text-cyan-400 font-semibold">Deep Learning</span> models, <span className="text-purple-400 font-semibold">Computer Vision pipelines</span> (YOLO / OpenCV), and <span className="text-white font-semibold">Generative AI</span> solutions with ultra-low latency edge deployment.
-          </motion.p>
+          </p>
 
           {/* Live Telemetry Data Badges */}
-          <motion.div
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="grid grid-cols-3 gap-4 max-w-md mb-10 font-mono text-xs"
-          >
+          <div className="grid grid-cols-3 gap-4 max-w-md mb-10 font-mono text-xs">
             <div className="p-3 rounded-lg glass-panel border border-white/10 flex flex-col">
               <span className="text-slate-400 text-[10px]">AI ENGINE</span>
               <span className="text-cyan-400 font-bold text-sm">PYTORCH / TFLITE</span>
@@ -92,14 +60,10 @@ export default function HeroSection() {
               <span className="text-slate-400 text-[10px]">INFERENCE</span>
               <span className="text-cyan-400 font-bold text-sm">&lt; 5 MS LATENCY</span>
             </div>
-          </motion.div>
+          </div>
 
           {/* Action Buttons */}
-          <motion.div
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex flex-wrap items-center gap-4"
-          >
+          <div className="flex flex-wrap items-center gap-4">
             <a
               href="#projects"
               className="group relative px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 text-white font-mono font-bold text-sm tracking-wider uppercase overflow-hidden shadow-[0_0_30px_rgba(0,243,255,0.4)] hover:shadow-[0_0_50px_rgba(0,243,255,0.8)] transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-3"
@@ -128,22 +92,16 @@ export default function HeroSection() {
               <Download className="w-4 h-4 text-cyan-400" />
               <span>RESUME</span>
             </a>
-          </motion.div>
+          </div>
 
         </div>
 
-        {/* Right Column: Floating Realistic Cutout Portrait */}
+        {/* Right Column: Realistic Cutout Portrait */}
         <div className="lg:col-span-5 flex items-center justify-center relative mt-8 lg:mt-0">
           <div className="absolute w-[360px] h-[360px] sm:w-[480px] sm:h-[480px] rounded-full border border-cyan-500/20 border-dashed animate-[spin_40s_linear_infinite] pointer-events-none" />
           <div className="absolute w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] rounded-full border border-purple-500/20 pointer-events-none shadow-[0_0_40px_rgba(0,243,255,0.15)]" />
 
-          <motion.div
-            style={{
-              x: mousePos.x * 15,
-              y: mousePos.y * 15,
-            }}
-            className="relative z-10 w-full max-w-[380px] sm:max-w-[440px] aspect-[4/5] animate-float flex items-center justify-center"
-          >
+          <div className="relative z-10 w-full max-w-[380px] sm:max-w-[440px] aspect-[4/5] animate-float flex items-center justify-center">
             <div className="absolute top-10 w-[80%] h-[80%] bg-gradient-to-t from-cyan-500/40 via-purple-600/30 to-transparent rounded-full blur-[50px] pointer-events-none" />
 
             <Image
@@ -156,9 +114,7 @@ export default function HeroSection() {
               className="w-full h-full object-contain filter drop-shadow-[0_0_40px_rgba(0,243,255,0.35)] select-none pointer-events-none"
             />
 
-            <motion.div
-              className="absolute -bottom-4 -left-4 glass-panel border border-cyan-500/40 p-3 rounded-xl shadow-[0_0_20px_rgba(0,243,255,0.2)] flex items-center gap-3 backdrop-blur-xl"
-            >
+            <div className="absolute -bottom-4 -left-4 glass-panel border border-cyan-500/40 p-3 rounded-xl shadow-[0_0_20px_rgba(0,243,255,0.2)] flex items-center gap-3 backdrop-blur-xl">
               <div className="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center text-cyan-400">
                 <Brain className="w-4 h-4 animate-pulse" />
               </div>
@@ -166,11 +122,9 @@ export default function HeroSection() {
                 <span className="text-[10px] text-slate-400 uppercase">COMPUTER VISION</span>
                 <span className="text-xs font-bold text-white">YOLO & OPENCV</span>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              className="absolute -top-4 -right-4 glass-panel border border-purple-500/40 p-3 rounded-xl shadow-[0_0_20px_rgba(157,0,255,0.2)] flex items-center gap-3 backdrop-blur-xl"
-            >
+            <div className="absolute -top-4 -right-4 glass-panel border border-purple-500/40 p-3 rounded-xl shadow-[0_0_20px_rgba(157,0,255,0.2)] flex items-center gap-3 backdrop-blur-xl">
               <div className="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400">
                 <Sparkles className="w-4 h-4" />
               </div>
@@ -178,8 +132,8 @@ export default function HeroSection() {
                 <span className="text-[10px] text-slate-400 uppercase">DEEP LEARNING</span>
                 <span className="text-xs font-bold text-white">PYTORCH & TFLITE</span>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
 
       </div>
