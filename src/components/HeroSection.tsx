@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { ArrowUpRight, Download, Terminal, Activity, Brain, Sparkles, Cpu } from 'lucide-react';
+import { ArrowUpRight, Download, Terminal, Brain, Sparkles } from 'lucide-react';
 import AITerminal from './AITerminal';
 
 export default function HeroSection() {
@@ -18,8 +18,10 @@ export default function HeroSection() {
       setMousePos({ x, y });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+      window.addEventListener('mousemove', handleMouseMove);
+      return () => window.removeEventListener('mousemove', handleMouseMove);
+    }
   }, []);
 
   return (
@@ -39,11 +41,10 @@ export default function HeroSection() {
         {/* Left Column: Hero Typography & Call-To-Actions */}
         <div className="lg:col-span-7 flex flex-col justify-center text-left">
           
-          {/* Futuristic Telemetry Chip */}
+          {/* Telemetry Chip */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-6 w-max shadow-[0_0_15px_rgba(0,243,255,0.15)]"
           >
             <Brain className="w-4 h-4 text-cyan-400 animate-pulse" />
@@ -54,9 +55,8 @@ export default function HeroSection() {
 
           {/* Massive Bold Typography */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
             className="text-5xl sm:text-7xl lg:text-8xl font-extrabold uppercase text-white tracking-tight leading-[0.95] mb-6"
           >
             TEJAS <br />
@@ -65,11 +65,10 @@ export default function HeroSection() {
             </span>
           </motion.h1>
 
-          {/* AI/ML Focused Subtitle */}
+          {/* Subtitle */}
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
             className="text-slate-300 text-base sm:text-lg max-w-xl font-light leading-relaxed mb-8"
           >
             Architecting high-performance <span className="text-cyan-400 font-semibold">Deep Learning</span> models, <span className="text-purple-400 font-semibold">Computer Vision pipelines</span> (YOLO / OpenCV), and <span className="text-white font-semibold">Generative AI</span> solutions with ultra-low latency edge deployment.
@@ -77,9 +76,8 @@ export default function HeroSection() {
 
           {/* Live Telemetry Data Badges */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
             className="grid grid-cols-3 gap-4 max-w-md mb-10 font-mono text-xs"
           >
             <div className="p-3 rounded-lg glass-panel border border-white/10 flex flex-col">
@@ -96,11 +94,10 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Animated Action Buttons */}
+          {/* Action Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-wrap items-center gap-4"
           >
             <a
@@ -135,41 +132,31 @@ export default function HeroSection() {
 
         </div>
 
-        {/* Right Column: Floating Realistic Cutout Portrait with Parallax */}
+        {/* Right Column: Floating Realistic Cutout Portrait */}
         <div className="lg:col-span-5 flex items-center justify-center relative mt-8 lg:mt-0">
-          
-          {/* Cybernetic HUD Rotating Circles Behind Image */}
           <div className="absolute w-[360px] h-[360px] sm:w-[480px] sm:h-[480px] rounded-full border border-cyan-500/20 border-dashed animate-[spin_40s_linear_infinite] pointer-events-none" />
           <div className="absolute w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] rounded-full border border-purple-500/20 pointer-events-none shadow-[0_0_40px_rgba(0,243,255,0.15)]" />
 
-          {/* Floating Parallax Container */}
           <motion.div
             style={{
-              x: mousePos.x * 20,
-              y: mousePos.y * 20,
+              x: mousePos.x * 15,
+              y: mousePos.y * 15,
             }}
-            transition={{ type: 'spring', stiffness: 100, damping: 20 }}
             className="relative z-10 w-full max-w-[380px] sm:max-w-[440px] aspect-[4/5] animate-float flex items-center justify-center"
           >
-            {/* Soft Ambient Glow Halo behind head cutout */}
             <div className="absolute top-10 w-[80%] h-[80%] bg-gradient-to-t from-cyan-500/40 via-purple-600/30 to-transparent rounded-full blur-[50px] pointer-events-none" />
 
-            {/* Cutout PNG Portrait */}
             <Image
               src="/images/tejas_cutout.png"
               alt="Tejas Kharkar Portrait"
               width={600}
               height={750}
               priority
+              sizes="(max-width: 768px) 100vw, 40vw"
               className="w-full h-full object-contain filter drop-shadow-[0_0_40px_rgba(0,243,255,0.35)] select-none pointer-events-none"
             />
 
-            {/* Floating Cyber Badge 1 */}
             <motion.div
-              style={{
-                x: mousePos.x * -15,
-                y: mousePos.y * -15,
-              }}
               className="absolute -bottom-4 -left-4 glass-panel border border-cyan-500/40 p-3 rounded-xl shadow-[0_0_20px_rgba(0,243,255,0.2)] flex items-center gap-3 backdrop-blur-xl"
             >
               <div className="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center text-cyan-400">
@@ -181,12 +168,7 @@ export default function HeroSection() {
               </div>
             </motion.div>
 
-            {/* Floating Cyber Badge 2 */}
             <motion.div
-              style={{
-                x: mousePos.x * -25,
-                y: mousePos.y * -25,
-              }}
               className="absolute -top-4 -right-4 glass-panel border border-purple-500/40 p-3 rounded-xl shadow-[0_0_20px_rgba(157,0,255,0.2)] flex items-center gap-3 backdrop-blur-xl"
             >
               <div className="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400">
