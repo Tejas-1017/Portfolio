@@ -7,8 +7,18 @@ export default function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
   const [isHovered, setIsHovered] = useState(false);
   const [cursorText, setCursorText] = useState('');
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
+    // Disable custom trailing cursor on touch devices to ensure 60 FPS mobile scrolling
+    if (
+      typeof window !== 'undefined' &&
+      ('ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth < 768)
+    ) {
+      setIsTouchDevice(true);
+      return;
+    }
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -37,6 +47,8 @@ export default function CustomCursor() {
     };
   }, []);
 
+  if (isTouchDevice) return null;
+
   return (
     <>
       {/* Central Cyan Dot */}
@@ -50,7 +62,7 @@ export default function CustomCursor() {
         transition={{ type: 'spring', damping: 30, stiffness: 400, mass: 0.1 }}
       />
 
-      {/* Trailing Outer Ring / Glowing Aura */}
+      {/* Trailing Outer Ring */}
       <motion.div
         className="fixed top-0 left-0 rounded-full pointer-events-none z-[9998] border border-cyan-400/60 bg-cyan-500/10 backdrop-blur-[2px] flex items-center justify-center text-[10px] font-mono font-bold text-cyan-300 uppercase tracking-wider"
         animate={{

@@ -9,6 +9,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
+    // Disable Lenis smooth scroll on mobile touch devices to use hardware-accelerated native momentum scroll
+    const isTouch =
+      typeof window !== 'undefined' &&
+      ('ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth < 768);
+
+    if (isTouch) return;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
