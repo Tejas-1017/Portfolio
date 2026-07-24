@@ -39,6 +39,9 @@ export const metadata: Metadata = {
     type: 'website',
     images: ['/images/tejas_photo.jpg'],
   },
+  verification: {
+    google: 'google2dc0d38f1bb8d532',
+  },
 };
 
 export default function RootLayout({
