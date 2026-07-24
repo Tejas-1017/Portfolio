@@ -40,9 +40,9 @@ export default function AboutSection() {
         
         <div className="flex flex-col items-center text-center mb-16">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.01 }}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
@@ -50,10 +50,9 @@ export default function AboutSection() {
           </motion.div>
 
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            viewport={{ once: true, amount: 0.01 }}
             className="text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-white"
           >
             ABOUT <span className="text-gradient-cyan">ME</span>
@@ -63,10 +62,9 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 1, x: 0 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.01 }}
             className="lg:col-span-5 relative"
           >
             <div className="relative rounded-2xl overflow-hidden glass-panel border border-cyan-500/30 p-3 group shadow-[0_0_30px_rgba(0,243,255,0.15)]">
@@ -75,7 +73,9 @@ export default function AboutSection() {
                   src="/images/tejas_photo.jpg"
                   alt="Tejas Kharkar AI Engineer"
                   fill
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700 filter contrast-105"
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  priority
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-500 filter contrast-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
                 
@@ -94,10 +94,9 @@ export default function AboutSection() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 1, x: 0 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.01 }}
             className="lg:col-span-7 flex flex-col justify-center"
           >
             <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 leading-snug">
@@ -124,15 +123,14 @@ export default function AboutSection() {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 mb-8">
-              {stats.map((st, idx) => {
+              {stats.map((st) => {
                 const IconComp = st.icon;
                 return (
                   <motion.div
                     key={st.label}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 1, y: 0 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 }}
+                    viewport={{ once: true, amount: 0.01 }}
                     className="p-4 rounded-xl glass-panel-glow light-sweep-container flex flex-col justify-between"
                   >
                     <div className="flex items-center justify-between mb-2">

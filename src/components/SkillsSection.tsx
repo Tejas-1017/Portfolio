@@ -88,10 +88,9 @@ export default function SkillsSection() {
             return (
               <motion.div
                 key={cat.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 1, y: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                viewport={{ once: true, amount: 0.01 }}
                 onMouseEnter={() => setHoveredCard(cat.id)}
                 onMouseLeave={() => setHoveredCard(null)}
                 className={`p-6 rounded-2xl glass-panel light-sweep-container relative transition-all duration-500 cursor-pointer border ${

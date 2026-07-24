@@ -80,10 +80,9 @@ export default function ExperienceSection() {
               return (
                 <motion.div
                   key={exp.company}
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 1, y: 0 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: idx * 0.2 }}
+                  viewport={{ once: true, amount: 0.01 }}
                   className={`relative flex flex-col md:flex-row items-start ${
                     isEven ? 'md:flex-row-reverse' : ''
                   }`}
