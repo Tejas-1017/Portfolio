@@ -1,10 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import Preloader from '@/components/Preloader';
-import CustomCursor from '@/components/CustomCursor';
+import dynamic from 'next/dynamic';
 import SmoothScroll from '@/components/SmoothScroll';
-import FuturisticCanvas from '@/components/FuturisticCanvas';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
@@ -14,15 +11,14 @@ import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 
-export default function Home() {
-  const [showPreloader, setShowPreloader] = useState(true);
+// Dynamic non-blocking imports for heavy canvas/cursor scripts
+const FuturisticCanvas = dynamic(() => import('@/components/FuturisticCanvas'), { ssr: false });
+const CustomCursor = dynamic(() => import('@/components/CustomCursor'), { ssr: false });
 
+export default function Home() {
   return (
     <>
-      {showPreloader && <Preloader onComplete={() => setShowPreloader(false)} />}
-
       <CustomCursor />
-
       <SmoothScroll>
         <div className="relative min-h-screen bg-[#030408] text-white overflow-hidden">
           <FuturisticCanvas />

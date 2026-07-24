@@ -1,11 +1,20 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function FuturisticCanvas() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth >= 768 && !('ontouchstart' in window)) {
+      setIsDesktop(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isDesktop) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -15,8 +24,6 @@ export default function FuturisticCanvas() {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    const isMobile = width < 768 || ('ontouchstart' in window);
-
     const handleResize = () => {
       if (!canvas) return;
       width = canvas.width = window.innerWidth;
@@ -24,24 +31,19 @@ export default function FuturisticCanvas() {
     };
     window.addEventListener('resize', handleResize);
 
-    // Mouse tracker
     let mouse = { x: width / 2, y: height / 2 };
     const handleMouseMove = (e: MouseEvent) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     };
+    window.addEventListener('mousemove', handleMouseMove);
 
-    if (!isMobile) {
-      window.addEventListener('mousemove', handleMouseMove);
-    }
-
-    // Particles array (Reduced from 70 to 18 on mobile)
-    const particleCount = isMobile ? 18 : 60;
+    const particleCount = 40;
     const particles = Array.from({ length: particleCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * (isMobile ? 0.2 : 0.4),
-      vy: (Math.random() - 0.5) * (isMobile ? 0.2 : 0.4),
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
       radius: Math.random() * 2 + 1,
       color: Math.random() > 0.5 ? '#00f3ff' : '#9d00ff',
       alpha: Math.random() * 0.5 + 0.2,
@@ -52,12 +54,11 @@ export default function FuturisticCanvas() {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // 1. Perspective Grid Lines
       ctx.strokeStyle = 'rgba(0, 243, 255, 0.03)';
       ctx.lineWidth = 1;
 
       gridOffset = (gridOffset + 0.2) % 40;
-      const step = isMobile ? 60 : 40;
+      const step = 40;
 
       for (let x = 0; x < width; x += step) {
         ctx.beginPath();
@@ -73,24 +74,22 @@ export default function FuturisticCanvas() {
         ctx.stroke();
       }
 
-      // 2. Mouse Glow Spotlight (Desktop only)
-      if (!isMobile) {
-        const gradient = ctx.createRadialGradient(
-          mouse.x,
-          mouse.y,
-          10,
-          mouse.x,
-          mouse.y,
-          350
-        );
-        gradient.addColorStop(0, 'rgba(0, 243, 255, 0.08)');
-        gradient.addColorStop(0.5, 'rgba(157, 0, 255, 0.03)');
-        gradient.addColorStop(1, 'transparent');
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, width, height);
-      }
+      // Mouse Glow
+      const gradient = ctx.createRadialGradient(
+        mouse.x,
+        mouse.y,
+        10,
+        mouse.x,
+        mouse.y,
+        350
+      );
+      gradient.addColorStop(0, 'rgba(0, 243, 255, 0.08)');
+      gradient.addColorStop(0.5, 'rgba(157, 0, 255, 0.03)');
+      gradient.addColorStop(1, 'transparent');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
 
-      // 3. Particles
+      // Particles
       particles.forEach((p, i) => {
         p.x += p.vx;
         p.y += p.vy;
@@ -104,33 +103,26 @@ export default function FuturisticCanvas() {
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
         ctx.globalAlpha = p.alpha;
-        
-        // Disable shadowBlur on mobile for GPU speed
-        if (!isMobile) {
-          ctx.shadowColor = p.color;
-          ctx.shadowBlur = 8;
-        }
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 6;
         ctx.fill();
         ctx.shadowBlur = 0;
         ctx.globalAlpha = 1;
 
-        // Node connection lines
-        if (!isMobile) {
-          for (let j = i + 1; j < particles.length; j++) {
-            const p2 = particles[j];
-            const dx = p.x - p2.x;
-            const dy = p.y - p2.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dx = p.x - p2.x;
+          const dy = p.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
 
-            if (dist < 100) {
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.strokeStyle = p.color;
-              ctx.globalAlpha = (1 - dist / 100) * 0.12;
-              ctx.stroke();
-              ctx.globalAlpha = 1;
-            }
+          if (dist < 100) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = p.color;
+            ctx.globalAlpha = (1 - dist / 100) * 0.12;
+            ctx.stroke();
+            ctx.globalAlpha = 1;
           }
         }
       });
@@ -142,12 +134,12 @@ export default function FuturisticCanvas() {
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      if (!isMobile) {
-        window.removeEventListener('mousemove', handleMouseMove);
-      }
+      window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [isDesktop]);
+
+  if (!isDesktop) return null;
 
   return (
     <canvas
