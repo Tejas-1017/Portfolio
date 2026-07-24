@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+import Preloader from '@/components/Preloader';
 import CustomCursor from '@/components/CustomCursor';
 import SmoothScroll from '@/components/SmoothScroll';
 import FuturisticCanvas from '@/components/FuturisticCanvas';
@@ -13,10 +15,14 @@ import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 
 export default function Home() {
+  const [showPreloader, setShowPreloader] = useState(true);
+
   return (
     <>
+      {showPreloader && <Preloader onComplete={() => setShowPreloader(false)} />}
+
       <CustomCursor />
-      
+
       <SmoothScroll>
         <div className="relative min-h-screen bg-[#030408] text-white overflow-hidden">
           <FuturisticCanvas />
