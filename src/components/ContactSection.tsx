@@ -43,7 +43,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden bg-black/40">
+    <section id="contact" className="py-12 md:py-24 relative overflow-hidden bg-black/40">
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[180px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">

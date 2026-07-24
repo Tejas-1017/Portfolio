@@ -38,7 +38,7 @@ const experiences = [
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="py-24 relative overflow-hidden bg-black/40">
+    <section id="experience" className="py-12 md:py-24 relative overflow-hidden bg-black/40">
       {/* Background Lights */}
       <div className="absolute top-1/2 left-10 w-[450px] h-[450px] bg-cyan-500/10 rounded-full blur-[160px] pointer-events-none" />
 

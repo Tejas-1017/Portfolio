@@ -32,7 +32,7 @@ const stats = [
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-24 relative overflow-hidden bg-black/40">
+    <section id="about" className="py-12 md:py-24 relative overflow-hidden bg-black/40">
       <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">

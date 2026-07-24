@@ -286,7 +286,7 @@ export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="projects" className="relative py-32 px-6 md:px-12 bg-black overflow-hidden">
+    <section id="projects" className="py-12 md:py-24 px-6 md:px-12 bg-black overflow-hidden relative">
       {/* Background Glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-cyan-950/20 blur-[140px] pointer-events-none rounded-full" />
       <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-purple-950/20 blur-[160px] pointer-events-none rounded-full" />

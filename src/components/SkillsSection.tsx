@@ -52,7 +52,7 @@ export default function SkillsSection() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   return (
-    <section id="skills" className="py-24 relative overflow-hidden bg-black/60">
+    <section id="skills" className="py-12 md:py-24 relative overflow-hidden bg-black/60">
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
