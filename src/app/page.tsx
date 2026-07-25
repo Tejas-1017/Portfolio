@@ -12,15 +12,17 @@ import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 
-// Dynamic non-blocking imports for heavy scripts
+// Dynamic non-blocking imports for heavy scripts & interactive widgets
 const FuturisticCanvas = dynamic(() => import('@/components/FuturisticCanvas'), { ssr: false });
 const CustomCursor = dynamic(() => import('@/components/CustomCursor'), { ssr: false });
+const AIChatbot = dynamic(() => import('@/components/AIChatbot'), { ssr: false });
 
 export default function Home() {
   return (
     <>
       <Preloader />
       <CustomCursor />
+      <AIChatbot />
       <SmoothScroll>
         <div className="relative min-h-screen bg-[#030408] text-white overflow-hidden">
           <FuturisticCanvas />
