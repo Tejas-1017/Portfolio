@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import Preloader from '@/components/Preloader';
 import SmoothScroll from '@/components/SmoothScroll';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
@@ -11,13 +12,14 @@ import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 
-// Dynamic non-blocking imports for heavy canvas/cursor scripts
+// Dynamic non-blocking imports for heavy scripts
 const FuturisticCanvas = dynamic(() => import('@/components/FuturisticCanvas'), { ssr: false });
 const CustomCursor = dynamic(() => import('@/components/CustomCursor'), { ssr: false });
 
 export default function Home() {
   return (
     <>
+      <Preloader />
       <CustomCursor />
       <SmoothScroll>
         <div className="relative min-h-screen bg-[#030408] text-white overflow-hidden">

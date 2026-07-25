@@ -8,7 +8,6 @@ export default function Preloader({ onComplete }: { onComplete?: () => void }) {
   const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
-    // Ultra-fast progress completion (400ms total duration)
     const timer = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -16,12 +15,14 @@ export default function Preloader({ onComplete }: { onComplete?: () => void }) {
           setTimeout(() => {
             setIsFinished(true);
             if (onComplete) onComplete();
-          }, 100);
+          }, 350);
           return 100;
         }
-        return prev + 25;
+        const diff = Math.floor(Math.random() * 5) + 2;
+        const next = prev + diff;
+        return next > 100 ? 100 : next;
       });
-    }, 25);
+    }, 40);
 
     return () => clearInterval(timer);
   }, [onComplete]);
@@ -32,12 +33,13 @@ export default function Preloader({ onComplete }: { onComplete?: () => void }) {
         <motion.div
           key="preloader"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.25, ease: 'easeInOut' }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#030408] select-none overflow-hidden"
+          exit={{ opacity: 0, scale: 1.03, filter: 'blur(8px)' }}
+          transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+          style={{ zIndex: 999999 }}
+          className="fixed inset-0 flex flex-col items-center justify-center bg-[#030408] select-none overflow-hidden"
         >
           {/* Ambient Cyan Halo */}
-          <div className="absolute w-[350px] h-[350px] bg-cyan-500/15 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute w-[450px] h-[450px] bg-cyan-500/15 rounded-full blur-[120px] pointer-events-none" />
 
           {/* Loader Text & Title */}
           <div className="relative z-10 flex flex-col items-center text-center px-4">
