@@ -35,7 +35,7 @@ const INITIAL_MESSAGES: Message[] = [
       '🤖 What AI models has Tejas built?',
       '🛠️ What is Tejas\' tech stack?',
       '💼 Tell me about Tejas\' experience',
-      '📄 Download Tejas\' Resume',
+      '📄 Download Resume',
       '📫 How can I contact Tejas?',
     ],
   },
@@ -112,7 +112,7 @@ export default function AIChatbot() {
       return {
         text: "📄 You can view and download **Tejas Kharkar's official Resume PDF** directly below:",
         links: [
-          { label: 'Download Tejas_Kharkar_Resume.pdf', url: '/Tejas_kharkar_.pdf', external: true },
+          { label: 'Download Resume', url: '/Tejas_kharkar_.pdf', external: true },
         ],
         chips: ['🤖 AI Projects', '💼 Experience', '📫 Contact Tejas'],
       };
