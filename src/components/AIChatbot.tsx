@@ -33,6 +33,7 @@ const INITIAL_MESSAGES: Message[] = [
     timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     chips: [
       '🤖 What AI models has Tejas built?',
+      '🏆 What awards has Tejas won?',
       '🛠️ What is Tejas\' tech stack?',
       '💼 Tell me about Tejas\' experience',
       '📄 Download Resume',
@@ -118,6 +119,24 @@ export default function AIChatbot() {
           { label: 'Download Resume', url: '/Tejas_kharkar_.pdf', external: true },
         ],
         chips: ['🤖 AI Projects', '💼 Experience', '📫 Contact Tejas'],
+      };
+    }
+
+    if (q.includes('award') || q.includes('achievement') || q.includes('win') || q.includes('honor') || q.includes('expo') || q.includes('hackathon')) {
+      return {
+        text: "🏆 **Tejas Kharkar's Top National & International Honors:**\n\n" +
+              "• **1st Winner** – ESYA '23 Innovation Challenge (IIIT Delhi)\n" +
+              "• **1st Winner** – Project Expo 2023 (MIT Jaipur)\n" +
+              "• **International Winner (Runner Up)** – Technoxian RC Electric International 2024\n" +
+              "• **1st Runner Up** – Virtual Robotics, MindSpark 2023 (COEP Pune)\n" +
+              "• **1st Runner Up** – Makers Carnival Innovation Challenge (JECRC Jaipur)\n" +
+              "• **2nd Runner Up** – IEEE National Project Expo (Chandigarh University)\n" +
+              "• **2nd Runner Up** – Engineer 2k23 Project Expo (NIT Surathkal)\n" +
+              "• **2nd Place** – Innovation Competition (NIT Srinagar)",
+        links: [
+          { label: 'View Awards & Recognitions', url: '#achievements' },
+        ],
+        chips: ['🤖 AI Projects', '💼 Experience', '📄 Download Resume'],
       };
     }
 
