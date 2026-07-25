@@ -181,6 +181,27 @@ export default function AIChatbot() {
     setMessages(INITIAL_MESSAGES);
   };
 
+  const renderFormattedText = (text: string) => {
+    const lines = text.split('\n');
+    return lines.map((line, lineIdx) => {
+      const parts = line.split(/(\*\*.*?\*\*)/g);
+      return (
+        <span key={lineIdx} className={lineIdx > 0 ? 'block mt-1' : 'block'}>
+          {parts.map((part, partIdx) => {
+            if (part.startsWith('**') && part.endsWith('**')) {
+              return (
+                <strong key={partIdx} className="font-bold text-white">
+                  {part.slice(2, -2)}
+                </strong>
+              );
+            }
+            return part;
+          })}
+        </span>
+      );
+    });
+  };
+
   return (
     <>
       {/* Floating Widget Trigger Button */}
@@ -297,13 +318,13 @@ export default function AIChatbot() {
                   </div>
 
                   <div
-                    className={`max-w-[88%] p-3.5 rounded-2xl leading-relaxed whitespace-pre-wrap ${
+                    className={`max-w-[88%] p-3.5 rounded-2xl leading-relaxed ${
                       msg.sender === 'user'
                         ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-tr-none shadow-[0_0_15px_rgba(0,243,255,0.2)]'
                         : 'bg-[#111827]/90 border border-slate-800 text-slate-200 rounded-tl-none shadow-md'
                     }`}
                   >
-                    {msg.text}
+                    {renderFormattedText(msg.text)}
                   </div>
 
                   {/* Links / Action Buttons */}
