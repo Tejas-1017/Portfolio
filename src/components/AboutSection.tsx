@@ -133,7 +133,7 @@ export default function AboutSection() {
                 data-cursor-text="DOWNLOAD"
               >
                 <Download className="w-4 h-4" />
-                <span>DOWNLOAD AI RESUME (PDF)</span>
+                <span>DOWNLOAD RESUME (PDF)</span>
               </a>
             </div>
 
