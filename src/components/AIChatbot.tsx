@@ -95,14 +95,17 @@ export default function AIChatbot() {
 
     if (q.includes('experience') || q.includes('work') || q.includes('background') || q.includes('job') || q.includes('career')) {
       return {
-        text: "💼 **Tejas Kharkar is an AI & Machine Learning Software Engineer** specializing in Computer Vision, Edge AI, and Generative AI.\n\n" +
-              "Key Focus Areas:\n" +
-              "• Building real-time computer vision streams with sub-50ms latency\n" +
-              "• Deploying enterprise RAG pipelines and local quantized LLMs\n" +
-              "• Optimizing TinyML models for low-power edge microcontrollers\n" +
-              "• Full-stack AI REST API & Web integration using FastAPI & Next.js",
+        text: "💼 **Tejas Kharkar's Professional Work Experience:**\n\n" +
+              "• **AI Engineer at Hashtee Labs** (May 2026 – Present | Mumbai, India)\n" +
+              "  - Industrial Computer Vision & Edge AI model deployment for real-time monitoring\n" +
+              "  - OpenCV image processing pipelines & low-latency inference optimization\n" +
+              "  - MQTT-based communication systems for IoT device management\n\n" +
+              "• **Technical Lead – Embedded & Edge AI at Shunya** (Aug 2023 – Present | Jaipur / Remote)\n" +
+              "  - Built 5+ embedded AI & TinyML prototypes on ESP32 & STM32 microcontrollers\n" +
+              "  - Designed BLE Smart Lock RSSI proximity authentication system\n" +
+              "  - Engineered multi-parameter health monitor & MPU6050 Parkinson's tremor suppression system",
         links: [
-          { label: 'View Full Timeline', url: '#experience' },
+          { label: 'View Work Experience Timeline', url: '#experience' },
         ],
         chips: ['🤖 AI Projects', '📄 Download Resume', '📫 Contact Tejas'],
       };
