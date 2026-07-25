@@ -225,7 +225,12 @@ export default function AIChatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="fixed bottom-24 right-4 sm:right-6 z-[9990] w-[calc(100vw-2rem)] sm:w-[410px] h-[540px] rounded-2xl bg-[#090d18]/95 border border-cyan-500/30 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.8),0_0_30px_rgba(0,243,255,0.15)] flex flex-col overflow-hidden font-sans"
+            data-lenis-prevent
+            data-lenis-prevent-wheel
+            data-lenis-prevent-touch
+            onWheel={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+            className="fixed bottom-24 right-4 sm:right-6 z-[9990] w-[calc(100vw-2rem)] sm:w-[410px] h-[540px] rounded-2xl bg-[#090d18]/95 border border-cyan-500/30 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.8),0_0_30px_rgba(0,243,255,0.15)] flex flex-col overflow-hidden font-sans pointer-events-auto"
           >
             {/* Header Bar */}
             <div className="px-4 py-3 bg-gradient-to-r from-[#0c1224] via-[#0f172a] to-[#0c1224] border-b border-cyan-500/20 flex items-center justify-between">
@@ -263,7 +268,14 @@ export default function AIChatbot() {
             </div>
 
             {/* Conversation Messages Viewport */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 text-sm text-slate-200 scrollbar-thin scrollbar-thumb-cyan-500/20">
+            <div
+              data-lenis-prevent
+              data-lenis-prevent-wheel
+              data-lenis-prevent-touch
+              onWheel={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
+              className="flex-1 overflow-y-auto overscroll-contain p-4 space-y-4 text-sm text-slate-200 scrollbar-thin scrollbar-thumb-cyan-500/20"
+            >
               {messages.map((msg) => (
                 <div
                   key={msg.id}
