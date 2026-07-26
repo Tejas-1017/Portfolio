@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Brain, Eye, Sparkles, Code, Cpu, Layers, Check } from 'lucide-react';
+import TiltCard from './TiltCard';
 
 const skillCategories = [
   {
@@ -77,50 +78,51 @@ export default function SkillsSection() {
             const isHovered = hoveredCard === cat.id;
 
             return (
-              <div
-                key={cat.id}
-                onMouseEnter={() => setHoveredCard(cat.id)}
-                onMouseLeave={() => setHoveredCard(null)}
-                className={`p-6 rounded-2xl glass-panel light-sweep-container relative transition-all duration-300 cursor-pointer border ${
-                  isHovered
-                    ? 'border-cyan-400 shadow-[0_0_35px_rgba(0,243,255,0.25)] scale-[1.02] -translate-y-2'
-                    : 'border-white/10 hover:border-cyan-500/30'
-                }`}
-                data-cursor-text="EXPLORE"
-              >
-                <div className="flex items-center justify-between mb-5">
-                  <div
-                    className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                      isHovered
-                        ? 'bg-cyan-500 text-black shadow-[0_0_20px_#00f3ff] rotate-6'
-                        : 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/30'
-                    }`}
-                  >
-                    <IconComp className="w-6 h-6" />
-                  </div>
-                  <span className="font-mono text-xs text-slate-500">0{idx + 1}</span>
-                </div>
-
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
-                  {cat.title}
-                </h3>
-                <p className="text-slate-400 text-xs leading-relaxed mb-6 font-light">
-                  {cat.desc}
-                </p>
-
-                <div className="flex flex-wrap gap-2 pt-2 border-t border-white/10">
-                  {cat.skills.map((skill) => (
-                    <motion.span
-                      key={skill}
-                      whileHover={{ scale: 1.05 }}
-                      className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-white/5 border border-white/10 text-slate-300 hover:border-cyan-400/50 hover:text-cyan-300 transition-colors flex items-center gap-1"
+              <TiltCard key={cat.id} className="rounded-2xl">
+                <div
+                  onMouseEnter={() => setHoveredCard(cat.id)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  className={`p-6 rounded-2xl glass-panel light-sweep-container relative transition-all duration-300 cursor-pointer border h-full ${
+                    isHovered
+                      ? 'border-cyan-400 shadow-[0_0_35px_rgba(0,243,255,0.25)] scale-[1.02] -translate-y-2'
+                      : 'border-white/10 hover:border-cyan-500/30'
+                  }`}
+                  data-cursor-text="EXPLORE"
+                >
+                  <div className="flex items-center justify-between mb-5">
+                    <div
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                        isHovered
+                          ? 'bg-cyan-500 text-black shadow-[0_0_20px_#00f3ff] rotate-6'
+                          : 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/30'
+                      }`}
                     >
-                      <Check className="w-3 h-3 text-cyan-400" />
-                      {skill}
-                    </motion.span>
-                  ))}
+                      <IconComp className="w-6 h-6" />
+                    </div>
+                    <span className="font-mono text-xs text-slate-500">0{idx + 1}</span>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
+                    {cat.title}
+                  </h3>
+                  <p className="text-slate-400 text-xs leading-relaxed mb-6 font-light">
+                    {cat.desc}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 pt-2 border-t border-white/10">
+                    {cat.skills.map((skill) => (
+                      <motion.span
+                        key={skill}
+                        whileHover={{ scale: 1.05 }}
+                        className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-white/5 border border-white/10 text-slate-300 hover:border-cyan-400/50 hover:text-cyan-300 transition-colors flex items-center gap-1"
+                      >
+                        <Check className="w-3 h-3 text-cyan-400" />
+                        {skill}
+                      </motion.span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </TiltCard>
             );
           })}
         </div>

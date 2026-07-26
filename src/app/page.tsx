@@ -19,6 +19,8 @@ const CustomCursor = dynamic(() => import('@/components/CustomCursor'), { ssr: f
 const AIChatbot = dynamic(() => import('@/components/AIChatbot'), { ssr: false });
 const LaptopTransition = dynamic(() => import('@/components/LaptopTransition'), { ssr: false });
 const ScrollProgress = dynamic(() => import('@/components/ScrollProgress'), { ssr: false });
+const ClickBurst = dynamic(() => import('@/components/ClickBurst'), { ssr: false });
+const MatrixStream = dynamic(() => import('@/components/MatrixStream'), { ssr: false });
 import SectionDivider from '@/components/SectionDivider';
 
 export default function Home() {
@@ -27,7 +29,9 @@ export default function Home() {
       <Preloader />
       <CustomCursor />
       <AIChatbot />
+      <ClickBurst />
       <ScrollProgress />
+      <MatrixStream />
       <SmoothScroll>
         <div className="relative min-h-screen bg-[#030408] text-white overflow-hidden">
           <FuturisticCanvas />

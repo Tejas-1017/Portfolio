@@ -8,6 +8,7 @@ export default function CustomCursor() {
   const [isHovered, setIsHovered] = useState(false);
   const [cursorText, setCursorText] = useState('');
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isMouseDown, setIsMouseDown] = useState(false);
 
   useEffect(() => {
     // Disable custom trailing cursor on touch devices to ensure 60 FPS mobile scrolling
@@ -22,6 +23,9 @@ export default function CustomCursor() {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
+
+    const handleMouseDown = () => setIsMouseDown(true);
+    const handleMouseUp = () => setIsMouseDown(false);
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
@@ -39,10 +43,14 @@ export default function CustomCursor() {
     };
 
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mouseup', handleMouseUp);
     window.addEventListener('mouseover', handleMouseOver);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mouseup', handleMouseUp);
       window.removeEventListener('mouseover', handleMouseOver);
     };
   }, []);
@@ -51,33 +59,34 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Central Cyan Dot */}
+      {/* Central Neon Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-3 h-3 bg-cyan-400 rounded-full pointer-events-none z-[9999] shadow-[0_0_12px_#00f3ff]"
+        className="fixed top-0 left-0 w-3 h-3 bg-cyan-300 rounded-full pointer-events-none z-[9999] shadow-[0_0_15px_#00f3ff]"
         animate={{
           x: mousePosition.x - 6,
           y: mousePosition.y - 6,
-          scale: isHovered ? 0 : 1,
+          scale: isMouseDown ? 0.6 : isHovered ? 0 : 1,
         }}
-        transition={{ type: 'spring', damping: 30, stiffness: 400, mass: 0.1 }}
+        transition={{ type: 'spring', damping: 30, stiffness: 450, mass: 0.08 }}
       />
 
-      {/* Trailing Outer Ring */}
+      {/* Trailing Interactive Ring */}
       <motion.div
-        className="fixed top-0 left-0 rounded-full pointer-events-none z-[9998] border border-cyan-400/60 bg-cyan-500/10 backdrop-blur-[2px] flex items-center justify-center text-[10px] font-mono font-bold text-cyan-300 uppercase tracking-wider"
+        className="fixed top-0 left-0 rounded-full pointer-events-none z-[9998] border border-cyan-400/80 bg-cyan-500/10 backdrop-blur-[2px] flex items-center justify-center text-[10px] font-mono font-bold text-cyan-300 uppercase tracking-wider"
         animate={{
-          x: mousePosition.x - (isHovered ? 32 : 20),
-          y: mousePosition.y - (isHovered ? 32 : 20),
-          width: isHovered ? 64 : 40,
-          height: isHovered ? 64 : 40,
-          borderColor: isHovered ? 'rgba(0, 243, 255, 0.9)' : 'rgba(0, 243, 255, 0.3)',
+          x: mousePosition.x - (isHovered ? 36 : 22),
+          y: mousePosition.y - (isHovered ? 36 : 22),
+          width: isHovered ? 72 : 44,
+          height: isHovered ? 72 : 44,
+          scale: isMouseDown ? 0.85 : 1,
+          borderColor: isHovered ? 'rgba(0, 243, 255, 1)' : 'rgba(0, 243, 255, 0.4)',
           boxShadow: isHovered
-            ? '0 0 30px rgba(0, 243, 255, 0.5), inset 0 0 15px rgba(0, 243, 255, 0.2)'
+            ? '0 0 35px rgba(0, 243, 255, 0.6), inset 0 0 20px rgba(0, 243, 255, 0.3)'
             : '0 0 15px rgba(0, 243, 255, 0.2)',
         }}
-        transition={{ type: 'spring', damping: 25, stiffness: 250, mass: 0.2 }}
+        transition={{ type: 'spring', damping: 22, stiffness: 280, mass: 0.15 }}
       >
-        {cursorText && <span>{cursorText}</span>}
+        {cursorText && <span className="animate-pulse">{cursorText}</span>}
       </motion.div>
     </>
   );

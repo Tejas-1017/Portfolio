@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Trophy, Award, ShieldCheck } from 'lucide-react';
+import TiltCard from './TiltCard';
 
 const achievements = [
   {
@@ -119,56 +120,57 @@ export default function AchievementsSection() {
             const isSilver = item.rankBadge === 'silver';
 
             return (
-              <motion.div
-                key={idx}
-                whileHover={{ y: -5 }}
-                className="p-6 rounded-2xl glass-panel-glow light-sweep-container relative flex flex-col justify-between group border border-white/10 hover:border-cyan-500/40 transition-all duration-300"
-              >
-                <div>
-                  {/* Top Badge & Category */}
-                  <div className="flex items-center justify-between gap-2 mb-4">
-                    <span className="px-2.5 py-1 rounded-md text-[10px] font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">
-                      {item.category}
-                    </span>
+              <TiltCard key={idx} className="rounded-2xl">
+                <motion.div
+                  whileHover={{ y: -5 }}
+                  className="p-6 rounded-2xl glass-panel-glow light-sweep-container relative flex flex-col justify-between group border border-white/10 hover:border-cyan-500/40 transition-all duration-300 h-full"
+                >
+                  <div>
+                    {/* Top Badge & Category */}
+                    <div className="flex items-center justify-between gap-2 mb-4">
+                      <span className="px-2.5 py-1 rounded-md text-[10px] font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">
+                        {item.category}
+                      </span>
 
-                    <div
-                      className={`px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-wider flex items-center gap-1.5 ${
-                        isGold
-                          ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/40 shadow-[0_0_12px_rgba(234,179,8,0.3)]'
-                          : isCyan
-                          ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 shadow-[0_0_12px_rgba(0,243,255,0.3)]'
-                          : isSilver
-                          ? 'bg-slate-300/20 text-slate-200 border border-slate-300/40'
-                          : 'bg-amber-600/20 text-amber-300 border border-amber-500/40'
-                      }`}
-                    >
-                      <Trophy className="w-3 h-3" />
-                      <span>{item.rank}</span>
+                      <div
+                        className={`px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-wider flex items-center gap-1.5 ${
+                          isGold
+                            ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/40 shadow-[0_0_12px_rgba(234,179,8,0.3)]'
+                            : isCyan
+                            ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 shadow-[0_0_12px_rgba(0,243,255,0.3)]'
+                            : isSilver
+                            ? 'bg-slate-300/20 text-slate-200 border border-slate-300/40'
+                            : 'bg-amber-600/20 text-amber-300 border border-amber-500/40'
+                        }`}
+                      >
+                        <Trophy className="w-3 h-3" />
+                        <span>{item.rank}</span>
+                      </div>
                     </div>
+
+                    {/* Title & Event */}
+                    <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors mb-1 leading-snug">
+                      {item.title}
+                    </h3>
+
+                    <div className="flex items-center gap-1.5 font-mono text-xs text-slate-300 font-semibold mb-3">
+                      <Award className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0" />
+                      <span>{item.organizer}</span>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-xs text-slate-400 leading-relaxed font-light mb-4">
+                      {item.desc}
+                    </p>
                   </div>
 
-                  {/* Title & Event */}
-                  <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors mb-1 leading-snug">
-                    {item.title}
-                  </h3>
-
-                  <div className="flex items-center gap-1.5 font-mono text-xs text-slate-300 font-semibold mb-3">
-                    <Award className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0" />
-                    <span>{item.organizer}</span>
+                  {/* Footer Event Tag */}
+                  <div className="pt-3 border-t border-white/10 flex items-center justify-between font-mono text-[11px] text-slate-500">
+                    <span>{item.event}</span>
+                    <ShieldCheck className="w-3.5 h-3.5 text-cyan-400/60" />
                   </div>
-
-                  {/* Description */}
-                  <p className="text-xs text-slate-400 leading-relaxed font-light mb-4">
-                    {item.desc}
-                  </p>
-                </div>
-
-                {/* Footer Event Tag */}
-                <div className="pt-3 border-t border-white/10 flex items-center justify-between font-mono text-[11px] text-slate-500">
-                  <span>{item.event}</span>
-                  <ShieldCheck className="w-3.5 h-3.5 text-cyan-400/60" />
-                </div>
-              </motion.div>
+                </motion.div>
+              </TiltCard>
             );
           })}
         </div>

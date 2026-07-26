@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub as Github } from "react-icons/fa6";
 import { Cpu, Activity, ShieldCheck, Zap, Layers, Sparkles, X, Terminal, Brain, Eye, Lock, HeartPulse, Stethoscope, Hand, Palette, Sprout, CreditCard } from "lucide-react";
+import TiltCard from "./TiltCard";
 
 interface ProjectMetric {
   label: string;
@@ -313,64 +314,65 @@ export default function ProjectsSection() {
           {projectsData.map((project) => {
             const IconComponent = project.icon;
             return (
-              <motion.div
-                key={project.id}
-                whileHover={{ y: -6 }}
-                className="group relative rounded-2xl bg-gradient-to-b from-gray-900/90 to-black p-6 border border-gray-800 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_0_35px_rgba(0,243,255,0.2)]"
-              >
-                <div>
-                  {/* Top Bar */}
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="p-3 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-black transition-all duration-300">
-                      <IconComponent className="w-6 h-6" />
-                    </div>
-                    <span className="text-xs font-mono text-cyan-400/80 px-2.5 py-1 rounded-md bg-cyan-950/30 border border-cyan-500/20">
-                      {project.category}
-                    </span>
-                  </div>
-
-                  {/* Title & Desc */}
-                  <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors mb-3 font-space">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm mb-6 line-clamp-3 leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  {/* Tech Badges */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="text-[11px] font-mono px-2 py-0.5 rounded bg-gray-800/80 text-gray-300 border border-gray-700/60"
-                      >
-                        {t}
+              <TiltCard key={project.id} className="rounded-2xl">
+                <motion.div
+                  whileHover={{ y: -6 }}
+                  className="group relative rounded-2xl bg-gradient-to-b from-gray-900/90 to-black p-6 border border-gray-800 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_0_35px_rgba(0,243,255,0.2)] h-full"
+                >
+                  <div>
+                    {/* Top Bar */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="p-3 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-black transition-all duration-300">
+                        <IconComponent className="w-6 h-6" />
+                      </div>
+                      <span className="text-xs font-mono text-cyan-400/80 px-2.5 py-1 rounded-md bg-cyan-950/30 border border-cyan-500/20">
+                        {project.category}
                       </span>
-                    ))}
+                    </div>
+
+                    {/* Title & Desc */}
+                    <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors mb-3 font-space">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm mb-6 line-clamp-3 leading-relaxed">
+                      {project.description}
+                    </p>
+
+                    {/* Tech Badges */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tech.map((t) => (
+                        <span
+                          key={t}
+                          className="text-[11px] font-mono px-2 py-0.5 rounded bg-gray-800/80 text-gray-300 border border-gray-700/60"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
 
-                {/* Bottom Actions */}
-                <div className="pt-4 border-t border-gray-800/80 flex items-center justify-between">
-                  <button
-                    onClick={() => setSelectedProject(project)}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400 hover:text-cyan-300 font-semibold group/btn"
-                  >
-                    <Terminal className="w-3.5 h-3.5" />
-                    <span>INSPECT METRICS</span>
-                  </button>
+                  {/* Bottom Actions */}
+                  <div className="pt-4 border-t border-gray-800/80 flex items-center justify-between">
+                    <button
+                      onClick={() => setSelectedProject(project)}
+                      className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400 hover:text-cyan-300 font-semibold group/btn"
+                    >
+                      <Terminal className="w-3.5 h-3.5" />
+                      <span>INSPECT METRICS</span>
+                    </button>
 
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
-                    title="View GitHub Repository"
-                  >
-                    <Github className="w-4 h-4" />
-                  </a>
-                </div>
-              </motion.div>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
+                      title="View GitHub Repository"
+                    >
+                      <Github className="w-4 h-4" />
+                    </a>
+                  </div>
+                </motion.div>
+              </TiltCard>
             );
           })}
         </div>
