@@ -21,6 +21,7 @@ const LaptopTransition = dynamic(() => import('@/components/LaptopTransition'), 
 const ScrollProgress = dynamic(() => import('@/components/ScrollProgress'), { ssr: false });
 const ClickBurst = dynamic(() => import('@/components/ClickBurst'), { ssr: false });
 const MatrixStream = dynamic(() => import('@/components/MatrixStream'), { ssr: false });
+const ButtonShockwave = dynamic(() => import('@/components/ButtonShockwave'), { ssr: false });
 import SectionDivider from '@/components/SectionDivider';
 
 export default function Home() {
@@ -30,6 +31,7 @@ export default function Home() {
       <CustomCursor />
       <AIChatbot />
       <ClickBurst />
+      <ButtonShockwave />
       <ScrollProgress />
       <MatrixStream />
       <SmoothScroll>

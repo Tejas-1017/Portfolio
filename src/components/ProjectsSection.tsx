@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub as Github } from "react-icons/fa6";
 import { Cpu, Activity, ShieldCheck, Zap, Layers, Sparkles, X, Terminal, Brain, Eye, Lock, HeartPulse, Stethoscope, Hand, Palette, Sprout, CreditCard } from "lucide-react";
 import TiltCard from "./TiltCard";
+import FlipCard from "./FlipCard";
 
 interface ProjectMetric {
   label: string;
@@ -315,63 +316,111 @@ export default function ProjectsSection() {
             const IconComponent = project.icon;
             return (
               <TiltCard key={project.id} className="rounded-2xl">
-                <motion.div
-                  whileHover={{ y: -6 }}
-                  className="group relative rounded-2xl bg-gradient-to-b from-gray-900/90 to-black p-6 border border-gray-800 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_0_35px_rgba(0,243,255,0.2)] h-full"
-                >
-                  <div>
-                    {/* Top Bar */}
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="p-3 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-black transition-all duration-300">
-                        <IconComponent className="w-6 h-6" />
+                <FlipCard
+                  front={
+                    <div className="group relative rounded-2xl bg-gradient-to-b from-gray-900/90 to-black p-6 border border-gray-800 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_0_35px_rgba(0,243,255,0.2)] h-[380px]">
+                      <div>
+                        {/* Top Bar */}
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="p-3 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-black transition-all duration-300">
+                            <IconComponent className="w-6 h-6" />
+                          </div>
+                          <span className="text-xs font-mono text-cyan-400/80 px-2.5 py-1 rounded-md bg-cyan-950/30 border border-cyan-500/20">
+                            {project.category}
+                          </span>
+                        </div>
+
+                        {/* Title & Desc */}
+                        <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors mb-3 font-space">
+                          {project.title}
+                        </h3>
+                        <p className="text-gray-400 text-sm mb-6 line-clamp-3 leading-relaxed">
+                          {project.description}
+                        </p>
+
+                        {/* Tech Badges */}
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {project.tech.map((t) => (
+                            <span
+                              key={t}
+                              className="text-[11px] font-mono px-2 py-0.5 rounded bg-gray-800/80 text-gray-300 border border-gray-700/60"
+                            >
+                              {t}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                      <span className="text-xs font-mono text-cyan-400/80 px-2.5 py-1 rounded-md bg-cyan-950/30 border border-cyan-500/20">
-                        {project.category}
-                      </span>
-                    </div>
 
-                    {/* Title & Desc */}
-                    <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors mb-3 font-space">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm mb-6 line-clamp-3 leading-relaxed">
-                      {project.description}
-                    </p>
-
-                    {/* Tech Badges */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.tech.map((t) => (
-                        <span
-                          key={t}
-                          className="text-[11px] font-mono px-2 py-0.5 rounded bg-gray-800/80 text-gray-300 border border-gray-700/60"
-                        >
-                          {t}
+                      {/* Bottom Actions */}
+                      <div className="pt-4 border-t border-gray-800/80 flex items-center justify-between">
+                        <span className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400 font-semibold">
+                          <Terminal className="w-3.5 h-3.5" />
+                          <span>FLIP FOR SPECS</span>
                         </span>
-                      ))}
+
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors z-30"
+                          title="View GitHub Repository"
+                        >
+                          <Github className="w-4 h-4" />
+                        </a>
+                      </div>
                     </div>
-                  </div>
+                  }
+                  back={
+                    <div className="flex flex-col justify-between h-full font-mono text-xs text-gray-200">
+                      <div>
+                        <div className="flex items-center gap-2 mb-3">
+                          <Brain className="w-5 h-5 text-cyan-400" />
+                          <span className="font-bold text-cyan-300 text-sm uppercase">{project.title} SPECS</span>
+                        </div>
 
-                  {/* Bottom Actions */}
-                  <div className="pt-4 border-t border-gray-800/80 flex items-center justify-between">
-                    <button
-                      onClick={() => setSelectedProject(project)}
-                      className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400 hover:text-cyan-300 font-semibold group/btn"
-                    >
-                      <Terminal className="w-3.5 h-3.5" />
-                      <span>INSPECT METRICS</span>
-                    </button>
+                        {/* Architecture Specs */}
+                        <div className="p-3 rounded-xl bg-cyan-950/40 border border-cyan-500/30 mb-4 text-[11px] text-gray-300">
+                          <span className="text-cyan-400 font-bold block mb-1">{"// ARCHITECTURE"}</span>
+                          <p className="line-clamp-3">{project.architecture}</p>
+                        </div>
 
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
-                      title="View GitHub Repository"
-                    >
-                      <Github className="w-4 h-4" />
-                    </a>
-                  </div>
-                </motion.div>
+                        {/* Live Metrics Grid */}
+                        <div className="grid grid-cols-2 gap-2 mb-4">
+                          {project.metrics.map((m) => (
+                            <div key={m.label} className="p-2 rounded-lg bg-gray-900 border border-gray-800">
+                              <span className="text-[10px] text-gray-400 block">{m.label}</span>
+                              <span className={`text-sm font-bold ${m.color}`}>{m.value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between pt-3 border-t border-gray-800">
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-500 text-black font-bold text-xs hover:bg-cyan-400 transition-colors z-30"
+                        >
+                          <Github className="w-3.5 h-3.5" />
+                          <span>GITHUB REPO</span>
+                        </a>
+
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedProject(project);
+                          }}
+                          className="text-cyan-400 underline text-[11px] hover:text-white z-30"
+                        >
+                          FULL MODAL
+                        </button>
+                      </div>
+                    </div>
+                  }
+                />
               </TiltCard>
             );
           })}
