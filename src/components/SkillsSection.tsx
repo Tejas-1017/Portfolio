@@ -59,13 +59,7 @@ export default function SkillsSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-center text-center mb-16"
-        >
+        <div className="flex flex-col items-center text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
             <span>02 // AI / ML TECHNICAL MATRIX</span>
@@ -74,7 +68,7 @@ export default function SkillsSection() {
           <h2 className="text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-white">
             AI ENGINEERING <span className="text-gradient-cyan">SKILLS</span>
           </h2>
-        </motion.div>
+        </div>
 
         {/* Skills Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -83,12 +77,8 @@ export default function SkillsSection() {
             const isHovered = hoveredCard === cat.id;
 
             return (
-              <motion.div
+              <div
                 key={cat.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
                 onMouseEnter={() => setHoveredCard(cat.id)}
                 onMouseLeave={() => setHoveredCard(null)}
                 className={`p-6 rounded-2xl glass-panel light-sweep-container relative transition-all duration-300 cursor-pointer border ${
@@ -130,7 +120,7 @@ export default function SkillsSection() {
                     </motion.span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>

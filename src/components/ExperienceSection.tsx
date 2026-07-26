@@ -46,13 +46,7 @@ export default function ExperienceSection() {
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-center text-center mb-20"
-        >
+        <div className="flex flex-col items-center text-center mb-20">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
             <span>03 // WORK EXPERIENCE</span>
@@ -61,7 +55,7 @@ export default function ExperienceSection() {
           <h2 className="text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-white">
             CAREER <span className="text-gradient-cyan">TIMELINE</span>
           </h2>
-        </motion.div>
+        </div>
 
         {/* Vertical Timeline Container */}
         <div className="relative">
@@ -73,12 +67,8 @@ export default function ExperienceSection() {
               const isEven = idx % 2 === 0;
 
               return (
-                <motion.div
+                <div
                   key={exp.company}
-                  initial={{ opacity: 0, x: isEven ? 50 : -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7, delay: idx * 0.2 }}
                   className={`relative flex flex-col md:flex-row items-start ${
                     isEven ? 'md:flex-row-reverse' : ''
                   }`}
@@ -144,7 +134,7 @@ export default function ExperienceSection() {
                     </motion.div>
                   </div>
 
-                </motion.div>
+                </div>
               );
             })}
           </div>

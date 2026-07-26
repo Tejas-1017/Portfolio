@@ -310,15 +310,11 @@ export default function ProjectsSection() {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projectsData.map((project, idx) => {
+          {projectsData.map((project) => {
             const IconComponent = project.icon;
             return (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: (idx % 3) * 0.1 }}
                 whileHover={{ y: -6 }}
                 className="group relative rounded-2xl bg-gradient-to-b from-gray-900/90 to-black p-6 border border-gray-800 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_0_35px_rgba(0,243,255,0.2)]"
               >
