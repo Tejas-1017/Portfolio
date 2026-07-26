@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { Brain, Award, BookOpen, Layers, CheckCircle2, Download, Sparkles } from 'lucide-react';
 
 const stats = [
@@ -37,21 +38,35 @@ export default function AboutSection() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        <div className="flex flex-col items-center text-center mb-16">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-center text-center mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
             <span>01 // AI ENGINEER BIOGRAPHY & METRICS</span>
           </div>
 
           <h2 className="text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-white">
             ABOUT <span className="text-gradient-cyan">ME</span>
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          <div className="lg:col-span-5 relative">
-            <div className="relative rounded-2xl overflow-hidden glass-panel border border-cyan-500/30 p-3 group shadow-[0_0_30px_rgba(0,243,255,0.15)]">
+          {/* Profile Card */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-5 relative"
+          >
+            <div className="relative rounded-2xl overflow-hidden glass-panel border border-cyan-500/30 p-3 group shadow-[0_0_30px_rgba(0,243,255,0.15)] hover:shadow-[0_0_50px_rgba(0,243,255,0.3)] transition-all duration-500">
               <div className="relative aspect-[3/4] rounded-xl overflow-hidden">
                 <Image
                   src="/images/tejas_photo.jpg"
@@ -69,15 +84,22 @@ export default function AboutSection() {
                     <p className="text-[10px] text-slate-400">AI / ML SOFTWARE ENGINEER</p>
                   </div>
                   <div className="px-2 py-1 rounded bg-purple-500/20 border border-purple-400/40 text-[10px] text-purple-300 flex items-center gap-1">
-                    <Sparkles className="w-3 h-3" />
+                    <Sparkles className="w-3 h-3 text-purple-300 animate-pulse" />
                     <span>AI ACTIVE</span>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="lg:col-span-7 flex flex-col justify-center">
+          {/* Description & Stats */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="lg:col-span-7 flex flex-col justify-center"
+          >
             <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 leading-snug">
               Designing <span className="text-cyan-400">Deep Learning Architectures</span> & High-Throughput <span className="text-purple-400">Computer Vision Systems</span>.
             </h3>
@@ -101,12 +123,18 @@ export default function AboutSection() {
               </div>
             </div>
 
+            {/* Stats Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 mb-8">
-              {stats.map((st) => {
+              {stats.map((st, i) => {
                 const IconComp = st.icon;
                 return (
-                  <div
+                  <motion.div
                     key={st.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    whileHover={{ scale: 1.03 }}
                     className="p-4 rounded-xl glass-panel-glow light-sweep-container flex flex-col justify-between"
                   >
                     <div className="flex items-center justify-between mb-2">
@@ -119,7 +147,7 @@ export default function AboutSection() {
                       <p className="text-xs font-bold text-white mb-0.5">{st.label}</p>
                       <p className="text-[11px] text-slate-400 font-mono">{st.desc}</p>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
@@ -137,7 +165,7 @@ export default function AboutSection() {
               </a>
             </div>
 
-          </div>
+          </motion.div>
 
         </div>
 

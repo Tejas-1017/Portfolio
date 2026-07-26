@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { Briefcase, Calendar, MapPin, ChevronRight } from 'lucide-react';
 
 const experiences = [
@@ -45,16 +46,22 @@ export default function ExperienceSection() {
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-center text-center mb-20"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
             <span>03 // WORK EXPERIENCE</span>
           </div>
 
           <h2 className="text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-white">
             CAREER <span className="text-gradient-cyan">TIMELINE</span>
           </h2>
-        </div>
+        </motion.div>
 
         {/* Vertical Timeline Container */}
         <div className="relative">
@@ -66,8 +73,12 @@ export default function ExperienceSection() {
               const isEven = idx % 2 === 0;
 
               return (
-                <div
+                <motion.div
                   key={exp.company}
+                  initial={{ opacity: 0, x: isEven ? 50 : -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: idx * 0.2 }}
                   className={`relative flex flex-col md:flex-row items-start ${
                     isEven ? 'md:flex-row-reverse' : ''
                   }`}
@@ -81,7 +92,10 @@ export default function ExperienceSection() {
 
                   {/* Timeline Card */}
                   <div className="w-full md:w-[45%] pl-12 md:pl-0">
-                    <div className="p-8 rounded-2xl glass-panel-glow light-sweep-container relative">
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      className="p-8 rounded-2xl glass-panel-glow light-sweep-container relative"
+                    >
                       
                       {/* Header */}
                       <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
@@ -127,10 +141,10 @@ export default function ExperienceSection() {
                         ))}
                       </div>
 
-                    </div>
+                    </motion.div>
                   </div>
 
-                </div>
+                </motion.div>
               );
             })}
           </div>

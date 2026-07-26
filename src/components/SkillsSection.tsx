@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Brain, Eye, Sparkles, Code, Cpu, Layers, Check } from 'lucide-react';
 
 const skillCategories = [
@@ -57,25 +58,37 @@ export default function SkillsSection() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        <div className="flex flex-col items-center text-center mb-16">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-center text-center mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
             <span>02 // AI / ML TECHNICAL MATRIX</span>
           </div>
 
           <h2 className="text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-white">
             AI ENGINEERING <span className="text-gradient-cyan">SKILLS</span>
           </h2>
-        </div>
+        </motion.div>
 
+        {/* Skills Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((cat, idx) => {
             const IconComp = cat.icon;
             const isHovered = hoveredCard === cat.id;
 
             return (
-              <div
+              <motion.div
                 key={cat.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
                 onMouseEnter={() => setHoveredCard(cat.id)}
                 onMouseLeave={() => setHoveredCard(null)}
                 className={`p-6 rounded-2xl glass-panel light-sweep-container relative transition-all duration-300 cursor-pointer border ${
@@ -107,16 +120,17 @@ export default function SkillsSection() {
 
                 <div className="flex flex-wrap gap-2 pt-2 border-t border-white/10">
                   {cat.skills.map((skill) => (
-                    <span
+                    <motion.span
                       key={skill}
+                      whileHover={{ scale: 1.05 }}
                       className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-white/5 border border-white/10 text-slate-300 hover:border-cyan-400/50 hover:text-cyan-300 transition-colors flex items-center gap-1"
                     >
                       <Check className="w-3 h-3 text-cyan-400" />
                       {skill}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

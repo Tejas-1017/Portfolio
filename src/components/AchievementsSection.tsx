@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { Trophy, Award, ShieldCheck } from 'lucide-react';
 
 const achievements = [
@@ -96,7 +97,13 @@ export default function AchievementsSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-center text-center mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3 shadow-[0_0_15px_rgba(0,243,255,0.15)]">
             <Trophy className="w-3.5 h-3.5 text-yellow-400" />
             <span>04 // NATIONAL & INTERNATIONAL HONORS</span>
@@ -108,7 +115,7 @@ export default function AchievementsSection() {
           <p className="text-slate-400 text-sm max-w-2xl mt-4 font-mono">
             National IEEE Expos, International Robotics Championships, and IIT/NIT Technical Summit Victories
           </p>
-        </div>
+        </motion.div>
 
         {/* Achievements Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -118,8 +125,13 @@ export default function AchievementsSection() {
             const isSilver = item.rankBadge === 'silver';
 
             return (
-              <div
+              <motion.div
                 key={idx}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: (idx % 3) * 0.1 }}
+                whileHover={{ y: -5 }}
                 className="p-6 rounded-2xl glass-panel-glow light-sweep-container relative flex flex-col justify-between group border border-white/10 hover:border-cyan-500/40 transition-all duration-300"
               >
                 <div>
@@ -166,7 +178,7 @@ export default function AchievementsSection() {
                   <span>{item.event}</span>
                   <ShieldCheck className="w-3.5 h-3.5 text-cyan-400/60" />
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
