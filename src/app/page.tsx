@@ -18,6 +18,8 @@ const FuturisticCanvas = dynamic(() => import('@/components/FuturisticCanvas'), 
 const CustomCursor = dynamic(() => import('@/components/CustomCursor'), { ssr: false });
 const AIChatbot = dynamic(() => import('@/components/AIChatbot'), { ssr: false });
 const LaptopTransition = dynamic(() => import('@/components/LaptopTransition'), { ssr: false });
+const ScrollProgress = dynamic(() => import('@/components/ScrollProgress'), { ssr: false });
+import SectionDivider from '@/components/SectionDivider';
 
 export default function Home() {
   return (
@@ -25,18 +27,26 @@ export default function Home() {
       <Preloader />
       <CustomCursor />
       <AIChatbot />
+      <ScrollProgress />
       <SmoothScroll>
         <div className="relative min-h-screen bg-[#030408] text-white overflow-hidden">
           <FuturisticCanvas />
           <Navbar />
           <main className="relative z-10">
             <HeroSection />
+            <SectionDivider title="SYSTEM // INTERFACE UNFOLDING" />
             <LaptopTransition />
+            <SectionDivider title="TELEMETRY // ENGINEER BIOGRAPHY" />
             <AboutSection />
+            <SectionDivider title="NEURAL MATRIX // TECH STACK" />
             <SkillsSection />
+            <SectionDivider title="CHRONICLE // CAREER TIMELINE" />
             <ExperienceSection />
+            <SectionDivider title="DEPLOYMENTS // AI CODEBASES" />
             <ProjectsSection />
+            <SectionDivider title="HONORS // RECOGNITION" />
             <AchievementsSection />
+            <SectionDivider title="COMMUNICATION // NEURAL LINK" />
             <ContactSection />
           </main>
           <Footer />
