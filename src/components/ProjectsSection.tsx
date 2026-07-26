@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub as Github } from "react-icons/fa6";
-import { ExternalLink, Cpu, Activity, ShieldCheck, Zap, Layers, Sparkles, X, Terminal, Brain, Eye, Lock, HeartPulse, Stethoscope, Hand, Palette, Sprout, CreditCard } from "lucide-react";
+import { Cpu, Activity, ShieldCheck, Zap, Layers, Sparkles, X, Terminal, Brain, Eye, Lock, HeartPulse, Stethoscope, Hand, Palette, Sprout, CreditCard } from "lucide-react";
 
 interface ProjectMetric {
   label: string;
@@ -310,7 +310,7 @@ export default function ProjectsSection() {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projectsData.map((project, idx) => {
+          {projectsData.map((project) => {
             const IconComponent = project.icon;
             return (
               <div
@@ -420,7 +420,7 @@ export default function ProjectsSection() {
 
               {/* Architecture Detail Box */}
               <div className="p-4 rounded-xl bg-cyan-950/20 border border-cyan-500/30 mb-6 font-mono text-xs text-gray-300">
-                <span className="text-cyan-400 font-bold block mb-1">// ARCHITECTURE & DEPLOYMENT SPECS</span>
+                <span className="text-cyan-400 font-bold block mb-1">{"// ARCHITECTURE & DEPLOYMENT SPECS"}</span>
                 <p>{selectedProject.architecture}</p>
               </div>
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { Trophy, Award, Medal, Sparkles, Star, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Trophy, Award, ShieldCheck } from 'lucide-react';
 
 const achievements = [
   {

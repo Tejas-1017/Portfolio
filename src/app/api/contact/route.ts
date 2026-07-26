@@ -38,7 +38,7 @@ export async function POST(req: Request) {
       console.log("[GMAIL SMTP NOTE] GMAIL_APP_PASSWORD not found in environment variables. Add GMAIL_APP_PASSWORD to .env.local.");
       return NextResponse.json({ success: true, message: "Signal received. Add GMAIL_APP_PASSWORD to .env.local for live Gmail dispatch." });
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("[GMAIL SMTP ERROR]", error);
     return NextResponse.json(
       { success: true, message: "Transmission logged" },

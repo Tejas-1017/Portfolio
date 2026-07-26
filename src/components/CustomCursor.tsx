@@ -15,7 +15,7 @@ export default function CustomCursor() {
       typeof window !== 'undefined' &&
       ('ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth < 768)
     ) {
-      setIsTouchDevice(true);
+      setTimeout(() => setIsTouchDevice(true), 0);
       return;
     }
 

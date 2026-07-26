@@ -9,11 +9,9 @@ import {
   Sparkles,
   User,
   RefreshCw,
-  MessageSquare,
   ExternalLink,
   ChevronRight,
   Download,
-  Mail,
 } from 'lucide-react';
 
 interface Message {
@@ -171,30 +169,33 @@ export default function AIChatbot() {
     const text = textToSend || inputValue.trim();
     if (!text) return;
 
-    const userMsg: Message = {
-      id: Date.now().toString(),
-      sender: 'user',
-      text,
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-    };
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: `user-${prev.length + 1}`,
+        sender: 'user',
+        text,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      },
+    ]);
 
-    setMessages((prev) => [...prev, userMsg]);
     if (!textToSend) setInputValue('');
     setIsTyping(true);
 
     // Simulate AI thinking time for realistic response
     setTimeout(() => {
       const respData = generateResponse(text);
-      const botMsg: Message = {
-        id: (Date.now() + 1).toString(),
-        sender: 'bot',
-        text: respData.text || '',
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        chips: respData.chips,
-        links: respData.links,
-      };
-
-      setMessages((prev) => [...prev, botMsg]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: `bot-${prev.length + 1}`,
+          sender: 'bot',
+          text: respData.text || '',
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          chips: respData.chips,
+          links: respData.links,
+        },
+      ]);
       setIsTyping(false);
     }, 600);
   };

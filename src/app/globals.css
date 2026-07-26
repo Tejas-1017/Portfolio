@@ -43,6 +43,10 @@
 }
 
 /* Glassmorphism utility classes */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
 .glass-panel {
   background: rgba(10, 15, 30, 0.7);
   backdrop-filter: blur(12px);

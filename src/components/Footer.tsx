@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Cpu, ArrowUp } from 'lucide-react';
-import { FaLinkedin, FaGithub } from 'react-icons/fa6';
+
 
 export default function Footer() {
   const [time, setTime] = useState('');

@@ -17,6 +17,7 @@ import Footer from '@/components/Footer';
 const FuturisticCanvas = dynamic(() => import('@/components/FuturisticCanvas'), { ssr: false });
 const CustomCursor = dynamic(() => import('@/components/CustomCursor'), { ssr: false });
 const AIChatbot = dynamic(() => import('@/components/AIChatbot'), { ssr: false });
+const LaptopTransition = dynamic(() => import('@/components/LaptopTransition'), { ssr: false });
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
           <Navbar />
           <main className="relative z-10">
             <HeroSection />
+            <LaptopTransition />
             <AboutSection />
             <SkillsSection />
             <ExperienceSection />

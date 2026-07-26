@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Terminal, X, Minimize2, Maximize2, Sparkles, Send } from "lucide-react";
+import { Terminal, X, Send } from "lucide-react";
 
 interface CommandOutput {
   command: string;

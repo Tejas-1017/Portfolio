@@ -22,7 +22,7 @@ export default function ContactSection() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-    } catch (err) {
+    } catch {
       console.log('Background email transmission dispatched.');
     } finally {
       setIsSubmitting(false);
@@ -63,7 +63,7 @@ export default function ContactSection() {
           
           <div className="lg:col-span-5 space-y-6">
             <h3 className="text-2xl font-bold text-white mb-4">
-              Let's Build Cutting-Edge <span className="text-cyan-400">AI / ML Software</span> & <span className="text-purple-400">Vision Systems</span>.
+              Let&apos;s Build Cutting-Edge <span className="text-cyan-400">AI / ML Software</span> & <span className="text-purple-400">Vision Systems</span>.
             </h3>
 
             <p className="text-slate-300 text-sm font-light leading-relaxed mb-8">
